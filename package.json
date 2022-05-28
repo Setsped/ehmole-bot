@@ -25,6 +25,7 @@
     "dotenv": "^10.0.0",
     "erela.js": "^2.3.3",
     "erela.js-spotify": "^1.2.0",
+    "fairy-erela.js-filters": "^1.0.0",
     "ffmpeg-static": "^4.4.0",
     "genius-lyrics": "^4.2.9",
     "lyrics-finder": "^21.7.0",

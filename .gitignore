@@ -9,7 +9,6 @@
 /coverage
 
 # misc
-config.json
 .DS_Store 
 .pem
 

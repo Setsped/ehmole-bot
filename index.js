@@ -6,6 +6,7 @@ const { Client} = require('discord.js');
 const { Manager } = require("erela.js");
 const client = new Client();
 const Spotify  = require("erela.js-spotify");
+const filter  = require("fairy-erela.js-filters");
 require('discord-buttons')(client);
 const queue = require("./commands/p.js")
 var mensagemNP = null;
@@ -18,6 +19,7 @@ const clientSecret= process.env.clientSecret;
 
 client.manager = new Manager({
   plugins: [
+    new filter(),
     new Spotify({
       clientID,
       clientSecret
