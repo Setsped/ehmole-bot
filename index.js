@@ -28,7 +28,7 @@ client.manager = new Manager({
   nodes: [
       {
       host: 'ehmolebot-melhorado.herokuapp.com',
-      identifier: 'Musica',
+      identifier: 'Musica1',
       port: 80,
       password: 'senha'
   },
@@ -67,8 +67,7 @@ console.log(`Node ${node.options.identifier} ocorreu um erro: ${error.message}`)
 })
 .on("queueEnd", (player) => {
  client.channels.cache
-   .get(player.textChannel)
-   .send("Acabou as musicas 😭");
+   .get(player.textChannel);
 
  player.destroy();
 });
@@ -124,18 +123,14 @@ client.on('voiceStateUpdate', async (member) => {
 
   try {
     if (botChannel) { 
-      
-      const songQueue = await queue?.songQueue?.get(guildID)
+     player = await client.manager.get(message.guild.id);
+     const songQueue = player.queue;
   
       if (botChannel.channel.members.size == 1 && !songQueue) {
         botChannel.channel.leave();
-        queue.songQueue.
-        songQueue.connection.dispatcher.end();
-        queue.songQueue.delete(guildID);
+        player.destroy();
       }
 
-    } else {
-      return
     }
   } catch (err) {
     console.log(err)
@@ -143,18 +138,6 @@ client.on('voiceStateUpdate', async (member) => {
 })
 
 client.login(process.env.DISCORD_BOT_TOKEN);
-
-
-function hmsToSecondsOnly(str) {
-  var p = str.split(':'),
-      s = 0, m = 1;
-
-  while (p.length > 0) {
-      s += m * parseInt(p.pop(), 10);
-      m *= 60;
-  }
-  return s;
-}
 
 function ssTohms(secs){
   var sec_num = parseInt(secs, 10)

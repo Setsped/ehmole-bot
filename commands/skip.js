@@ -12,7 +12,6 @@ module.exports = {
         if (message.channel.id === '753413520606887967') return;
         const { channel } = message.member.voice;
 
-
         let embed = new Discord.MessageEmbed()
         .setColor('#faebd7')
         .setTitle("Tocando agora ♪")
@@ -24,10 +23,11 @@ module.exports = {
         }
 
         if (channel.id !== player.voiceChannel) return message.channel.send("voce nem ta na mesma call que eu 🙄");
-         
+      
         const { title } = player.queue.current;
         player.stop();
-        return message.channel.send("**" + `${title}` + "**" + " foi skipada.");
+        return message.channel.send("**"+ `${title}` + "**" +" foi skipada.");
+
     },
     permissions: '',    
     requiredRoles: [],

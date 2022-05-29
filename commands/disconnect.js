@@ -8,22 +8,18 @@ module.exports = {
     minArgs: 0,
     maxArgs: 0,
     callback: async (message, arguments, text) => {
-        //if (message.channel.id === MUTE_CHANNEL) return;
-        try { var songQueue = await queue.songQueue.get(message.guild.id);
-        } catch (err) {
-            
-        }
-        const bot_channel = await message.guild.me.voice.channel;
-        const voice_channel = await message.member.voice.channel;
-        /*if (!message.member.voice.channel) return message.channel.send(
-            'você precisa estar em um chat de voz para usar esse comando burro')*/
-        if (bot_channel === voice_channel) {
-            if (songQueue?.songs?.length){
-                queue.songQueue.delete(message.guild.id);
-                await songQueue.connection.dispatcher.end();
+        if (message.channel.id === '753413520606887967') return;
+
+        const { channel } = message.member.voice;
+
+        const player = message.client.manager.get(message.guild.id);
+        if (channel.id !== player.voiceChannel) return message.channel.send("voce nem ta na mesma call que eu 🙄");
+
+            if (player){
+                player.destroy();
             }
-            bot_channel.leave()
-        }
+
+            channel.leave()
     },
     permissions: '',    
     requiredRoles: [],
