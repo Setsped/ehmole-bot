@@ -1,7 +1,7 @@
 
 const { PREFIX, MUTE_CHANNEL} = require('../config.json')
 const Discord = require("discord.js");
-const SpotifyThumb = "https://photos5.appleinsider.com/gallery/38530-73272-Spotify-Lead-Image-xl.jpg";
+const SpotifyThumb = "https://i.pinimg.com/564x/9e/75/23/9e75237755b7261a24668d240b5d1cdf.jpg";
 
 
 module.exports = {
@@ -25,22 +25,18 @@ module.exports = {
       }
 
       var {current} = player.queue;
-
       posicao = player.position;
-      console.log(posicao)
-
       tempo = msToHour(posicao), posicao= ~~(posicao / 1000);
 
-        
-
-        embed.setDescription(`[${current.title}](${current.uri || null})`)
-        .addFields(
+      embed.setDescription(`[${current.title}](${current.uri || null})`)
+       .addFields(
           {"name": "\u200B",
           "value": "`"+`${tempo}[${progressBarEnhanced(posicao,(current.duration/1000),15)}]${ssTohms(current.duration/1000)}`+"`"},
           {"name": "\u200B","value": "`Requested by: `" + `${current.requester.username}`}
         )
         .setThumbnail(current.thumbnail || SpotifyThumb)
-        embedMsg = await message.channel.send(embed)
+        
+      embedMsg = await message.channel.send(embed)
       
     },
     permissions: '',    

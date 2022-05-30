@@ -1,6 +1,6 @@
 const {MUTE_CHANNEL} = require('../config.json')
 const Discord = require("discord.js")
-const SpotifyThumb = "https://photos5.appleinsider.com/gallery/38530-73272-Spotify-Lead-Image-xl.jpg";
+const SpotifyThumb = "https://i.pinimg.com/564x/9e/75/23/9e75237755b7261a24668d240b5d1cdf.jpg";
 
 module.exports = {
     commands: ['play', 'p'],

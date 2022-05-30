@@ -10,7 +10,7 @@ const filter  = require("fairy-erela.js-filters");
 require('discord-buttons')(client);
 const queue = require("./commands/p.js")
 var mensagemNP = null;
-const SpotifyThumb = "https://photos5.appleinsider.com/gallery/38530-73272-Spotify-Lead-Image-xl.jpg";
+const SpotifyThumb = "https://i.pinimg.com/564x/9e/75/23/9e75237755b7261a24668d240b5d1cdf.jpg";
 
 
 
@@ -28,7 +28,7 @@ client.manager = new Manager({
   nodes: [
       {
       host: 'ehmolebot-melhorado.herokuapp.com',
-      identifier: 'Musica1',
+      identifier: 'Musica',
       port: 80,
       password: 'senha'
   },
