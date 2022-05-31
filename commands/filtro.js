@@ -46,10 +46,6 @@ module.exports = {
 
         if (arguments.length && arguments[0].toLowerCase() in filtros) {
             for(e in filtros){
-                console.log()
-                console.log(filtros[e])
-                console.log(arguments[0].toLowerCase())
-
                 if(arguments[0].toLowerCase() === filtros[e].toLowerCase()){
                     filtro = filtros[e];
                 }
