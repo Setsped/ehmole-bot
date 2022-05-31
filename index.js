@@ -73,12 +73,13 @@ console.log(`Node ${node.options.identifier} ocorreu um erro: ${error.message}`)
 });
 
 
-
 client.on("ready", async (message) => {
   console.log(`\u001b[1;36m${client.user.username} `+ ("\u001b[1;34m entrou no servidor. oikkkk \u001b[0m"));
   
   client.manager.init(client.user.id);
   console.log("Manager Iniciado!");
+
+
 
   const baseFile = "commands-base.js";
   const commandBase = require(`./commands/${baseFile}`);
@@ -117,13 +118,16 @@ client.on('voiceStateUpdate', async (member) => {
   const botChannel = client.voice.connections.get(guildID)
   const user = member.member.user.username;
 
-  if (user === client.user.username && typeof botChannel?.channel?.id === 'undefined') {
-    queue?.songQueue?.delete(guildID);
-  }
+  
 
   try {
     if (botChannel) { 
-     player = await client.manager.get(message.guild.id);
+     player = await client.manager.get(guildID);
+     console.log("a")
+     if(player != undefined){
+       player.voiceChannel = botChannel;
+     }
+
      const songQueue = player.queue;
   
       if (botChannel.channel.members.size == 1 && !songQueue) {

@@ -4,18 +4,17 @@ const Discord = require("discord.js");
 
 const filtros = {
     reset: "reset",
-    nightcore: "Nightcore",
-    vaporwave:"Vaporwave",
-    bassboost:"BassBoost",
-    pop:"pop",
-    soft:"soft",
-    treblebass:"treblebass",
-    eightdimension:"EightDimension",
-    karaoke:"Karaoke",
-    vibrato:"Vibrato",
-    tremolo:"Tremolo",
+    nightcore: "nightcore",
+    vaporwave: "vaporwave",
+    bassboost: "bassBoost",
+    pop: "pop",
+    soft: "soft",
+    treblebass: "treblebass",
+    eightd: "eightD",
+    karaoke: "karaoke",
+    vibrato: "vibrato",
+    tremolo: "tremolo",
   };
-
 
 module.exports = {
     commands: ['filtro','filter'],
@@ -39,68 +38,36 @@ module.exports = {
         if (channel.id !== player.voiceChannel) return message.channel.send("voce nem ta na mesma call que eu 🙄");
         if(!arguments.length){
             embed.setTitle("Mande algum filtro da lista:")
-            embed.setDescription(' Nightcore, Vaporwave, BassBoost, Pop, Soft, Treblebass, EightDimension, Karaoke, Vibrato, Tremolo ')
+            embed.setDescription(' Nightcore, Vaporwave, BassBoost, Pop, Soft, Treblebass, EightD, Karaoke, Vibrato, Tremolo ')
             embed.setFooter("\n Ou para resetar use >filter Reset ")
             return message.channel.send(embed)
         }
 
-        if (arguments.length && arguments[0].toLowerCase() in filtros) filtro = arguments[0].toLowerCase();
+
+        if (arguments.length && arguments[0].toLowerCase() in filtros) {
+            for(e in filtros){
+                console.log()
+                console.log(filtros[e])
+                console.log(arguments[0].toLowerCase())
+
+                if(arguments[0].toLowerCase() === filtros[e].toLowerCase()){
+                    filtro = filtros[e];
+                }
+            }
+        } else{
+            embed.setAuthor("Filtro não encontrado!")
+            return message.channel.send(embed); 
+        }
         
-        switch(filtro){
-            case 'reset': player.reset()
+
+        if(filtro === "reset"){
+            player.reset();
             embed.setAuthor("Filtros Resetados!")
-                return message.channel.send(embed);
-
-            case 'nightcore':
-                player.nightcore ^= true; 
-                embed.setAuthor("Nightcore "+ ( player.nightcore ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'vaporwave':
-                player.vaporwave ^= true;
-                embed.setAuthor("Vaporwave "+ ( player.vaporwave ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'bassboost':
-                player.bassBoost ^= true;
-                embed.setAuthor("BassBoost "+ ( player.bassBoost ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'pop':
-                player.pop ^= true;
-                embed.setAuthor("Pop "+ ( player.pop  ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'soft':
-                player.soft ^= true;
-                embed.setAuthor("Soft "+ ( player.soft ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'eightdimension':
-                player.eightD ^= true;
-                embed.setAuthor("EightDimension "+ ( player.eightD ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'karaoke':
-                player.karaoke ^= true;
-                embed.setAuthor("Karaoke "+ (player.karaoke ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'vibrato':
-                player.vibrato ^= true;
-                embed.setAuthor("Vibrato "+ (player.vibrato ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'treblebass':
-                player.treblebass ^= true;
-                embed.setAuthor("treblebass "+ (player.treblebass ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
-            case 'tremolo':
-                player.tremolo ^= true;
-                embed.setAuthor("Tremolo "+ (player.tremolo ? "Ligado" : "Desligado"))
-                return message.channel.send(embed);
-
+            return message.channel.send(embed);
+        } else {
+            player[filtro] ^= true
+            embed.setAuthor(filtro +" "+ (player[filtro] ? "Ligado" : "Desligado"))
+            return message.channel.send(embed);
         }
     },
     permissions: '',    

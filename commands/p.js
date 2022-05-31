@@ -10,8 +10,8 @@ module.exports = {
     maxArgs: null,
     callback: async (message, arguments, manager, client) => {
         if (message.channel.id === MUTE_CHANNEL) return;
-        const voice_channel = await message.member.voice.channel;
-        const bot_channel = await message.guild.me.voice.channel;
+        var voice_channel = await message.member.voice.channel;
+        var bot_channel = await message.guild.me.voice.channel;
         if(!voice_channel) return message.channel.send('Voce precisa estar em uma call pra usar esse comando troxa')
         if (bot_channel && bot_channel !== voice_channel) return message.channel.send(
                 "Você precisa estar na mesma call que o bot para usar esse comando burro")
@@ -19,14 +19,12 @@ module.exports = {
             argumentArr = arguments.join().split('&ab_channel');
             arguments = [argumentArr[0]];
         }
-       
-
 
         const player = client.manager.create({
-            guild: message.guild.id,
-            voiceChannel: message.member.voice.channel.id,
-            textChannel: message.channel.id,
-          });
+          guild: message.guild.id,
+          voiceChannel: message.member.voice.channel.id,
+          textChannel: message.channel.id,
+        });
 
         if (player.state !== "CONNECTED") player.connect();
 
@@ -69,7 +67,6 @@ module.exports = {
             
             case 'PLAYLIST_LOADED':
               player.queue.add(res.tracks);
-      
               if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
               return message.reply(`Playlist adicionada \`${res.playlist.name}\` com  ${res.tracks.length} musicas.`);
 
