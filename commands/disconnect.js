@@ -1,26 +1,25 @@
-const queue = require('./p.js')
-const { PREFIX, MUTE_CHANNEL} = require('../config.json')
-
 module.exports = {
-    commands: ['disconnect', 'dc'],
-    expectedArgs: '',
-    permissionError: '',
-    minArgs: 0,
-    maxArgs: 0,
-    callback: async (message, arguments, text) => {
-        if (message.channel.id === '753413520606887967') return;
+	commands: ['disconnect', 'dc', 'leave'],
+	expectedArgs: '',
+	permissionError: '',
+	minArgs: 0,
+	maxArgs: 0,
+	callback: async (message, arguments, text) => {
+		if (message.channel.id === '753413520606887967') return;
 
-        const { channel } = message.member.voice;
+		const { channel } = message.member.voice;
+		if (!channel) return;
 
-        const player = message.client.manager.get(message.guild.id);
-        if (channel.id !== player.voiceChannel) return message.channel.send("voce nem ta na mesma call que eu 🙄");
+		const player = await message.client.manager.get(message.guild.id);
 
-            if (player){
-                player.destroy();
-            }
+		if (channel.id !== message.guild.voice.channel.id) {return message.channel.send('voce nem ta na mesma call que eu 🙄');}
 
-            channel.leave()
-    },
-    permissions: '',    
-    requiredRoles: [],
-  }
+		if (player) {
+			player.destroy();
+		}
+
+		channel.leave();
+	},
+	permissions: '',
+	requiredRoles: [],
+};
