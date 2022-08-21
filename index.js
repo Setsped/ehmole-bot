@@ -7,7 +7,7 @@ const { Client } = require('discord.js');
 const client = new Client();
 require('discord-buttons')(client);
 const Spotify = require('erela.js-spotify');
-const filter = require('fairy-erela.js-filters');
+const filter = require('erela.js-filters');
 
 let mensagemNP = null,
 	TrackDuration;

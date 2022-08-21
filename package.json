@@ -22,8 +22,8 @@
         "discord.js": "^12.5.3",
         "dotenv": "^10.0.0",
         "erela.js": "^2.3.3",
+        "erela.js-filters": "^1.2.7",
         "erela.js-spotify": "^1.2.0",
-        "fairy-erela.js-filters": "^1.0.0",
         "lyrics-finder": "^21.7.0"
     },
     "devDependencies": {
