@@ -26,10 +26,10 @@ client.manager = new Manager({
 	],
 	nodes: [
 		{
-			host: 'ehmolebot-melhorado.herokuapp.com',
+			host: 'lavalink-dos-cria.herokuapp.com',
 			identifier: 'Musica',
 			port: 80,
-			password: 'senha',
+			password: 'senhadolavalink',
 		},
 	],
 
